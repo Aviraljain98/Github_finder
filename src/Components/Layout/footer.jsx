@@ -1,5 +1,5 @@
 import React from 'react'
-import MadeWithLove from 'react-made-with-love'
+
 
 function Footer() {
     
@@ -7,7 +7,7 @@ function Footer() {
   return (
    <footer className='footer p-10 bg-gray-700  text-primary-content footer-center'>
    <div>
-        <p><MadeWithLove by="Aviral" emoji/></p>
+        <p>Made with ❤️ by Aviral</p>
    </div>
 
    </footer>
