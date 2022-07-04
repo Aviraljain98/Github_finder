@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
+import Navbar from './Components/Layout/Navbar';
+import Footer from './Components/Layout/footer';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import NotFound from './Pages/NotFound';
+import { GithubProvider } from './context/github/GithubContext';
+import {AlertProvider} from './context/alert/AlertContext';
+import Alert from './Components/Layout/Alert';
+import User from './Pages/User';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <GithubProvider>
+    <AlertProvider>
+    <Router>
+    <div className="flex flex-col justify-between h-screen">
+     <Navbar title="Github Finder"/>
+     <main className='container mx-auto px-3 pb-12'>
+       <Alert/>
+       <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/about' element={<About/>}></Route>
+        <Route path='/user/:login' element={<User/>}></Route>
+        <Route path='/notfound' element={<NotFound/>}></Route>
+        <Route path='/*' element={<NotFound/>}></Route>
+       </Routes>
+     </main>
+     <Footer/>
+      
     </div>
+    </Router>
+    </AlertProvider>
+    </GithubProvider>
   );
 }
 
